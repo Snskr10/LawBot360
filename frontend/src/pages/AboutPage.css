@@ -1,0 +1,63 @@
+/* About Page Styles - Same as Mission */
+
+.about-page {
+  min-height: 100vh;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  padding: 2rem;
+}
+
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #1a1a1a;
+  padding: 3rem;
+  border-radius: 0.5rem;
+}
+
+.about-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  border-bottom: 2px solid #8BC34A;
+  padding-bottom: 1rem;
+}
+
+.about-section {
+  margin-bottom: 2rem;
+}
+
+.about-section h2 {
+  font-size: 1.75rem;
+  color: #8BC34A;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+.about-section p {
+  color: #d0d0d0;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.about-section strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-page {
+    padding: 1rem;
+  }
+
+  .about-container {
+    padding: 1.5rem;
+  }
+
+  .about-container h1 {
+    font-size: 2rem;
+  }
+}
+

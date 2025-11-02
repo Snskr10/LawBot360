@@ -1,0 +1,153 @@
+/* Chat Message Component */
+
+.chat-message {
+  display: flex;
+  gap: 1rem;
+  max-width: 85%;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.chat-message-user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.chat-message-ai {
+  align-self: flex-start;
+}
+
+.chat-message-icon {
+  flex-shrink: 0;
+}
+
+.ai-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: #8BC34A;
+  filter: drop-shadow(0 0 4px rgba(139, 195, 74, 0.5));
+}
+
+.chat-message-content {
+  flex: 1;
+  background-color: #343638;
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  border: none;
+}
+
+.chat-message-user .chat-message-content {
+  background-color: #343638;
+  border: none;
+}
+
+.chat-message-text {
+  color: #ffffff;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.chat-message-text p {
+  margin: 0;
+  color: #ffffff;
+}
+
+.chat-message-refs {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #2a2a2a;
+}
+
+.chat-message-refs strong {
+  color: #8BC34A;
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.chat-message-refs ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style-type: disc;
+}
+
+.chat-message-refs li {
+  color: #9ca3af;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.chat-message-time {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-align: right;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #8BC34A;
+  animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .chat-message {
+    max-width: 95%;
+  }
+
+  .chat-message-content {
+    padding: 0.75rem 1rem;
+  }
+
+  .ai-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1.25rem;
+  }
+}
+

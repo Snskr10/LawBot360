@@ -1,0 +1,175 @@
+/* Chat Page - Law Bot Pro Style Dark Theme */
+
+.chat-page {
+  display: flex;
+  height: 100vh;
+  background-color: #202123;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.chat-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #282A2C;
+  overflow: hidden;
+}
+
+/* Announcement Banner */
+.announcement-banner {
+  background-color: #343638;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: none;
+}
+
+.announcement-icon {
+  font-size: 1.25rem;
+  color: #f59e0b;
+}
+
+.announcement-text {
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
+.announcement-text a {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.announcement-text a:hover {
+  color: #60a5fa;
+}
+
+/* Chat Messages Container */
+.chat-messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.chat-messages-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-messages-container::-webkit-scrollbar-track {
+  background: #282A2C;
+}
+
+.chat-messages-container::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
+  border-radius: 4px;
+}
+
+.chat-messages-container::-webkit-scrollbar-thumb:hover {
+  background: #5a5a5a;
+}
+
+/* Chat Input Container */
+.chat-input-container {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  background-color: #282A2C;
+  border-top: none;
+}
+
+.chat-input {
+  flex: 1;
+  background-color: #343638;
+  border: 1px solid #404244;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.chat-input:focus {
+  border-color: #8BC34A;
+}
+
+.chat-input::placeholder {
+  color: #9ca3af;
+}
+
+.chat-send-button {
+  background-color: #fbbf24;
+  color: #000000;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.chat-send-button:hover:not(:disabled) {
+  background-color: #f59e0b;
+}
+
+.chat-send-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Footer */
+.chat-footer {
+  padding: 1rem 2rem;
+  background-color: #282A2C;
+  border-top: none;
+}
+
+.chat-footer p {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-align: center;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.chat-footer a {
+  color: #3b82f6;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.chat-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .chat-page {
+    flex-direction: column;
+  }
+
+  .chat-messages-container {
+    padding: 1rem;
+  }
+
+  .chat-input-container {
+    padding: 1rem;
+  }
+
+  .chat-footer {
+    padding: 0.75rem 1rem;
+  }
+
+  .announcement-banner {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
