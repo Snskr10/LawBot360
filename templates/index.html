@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}LawBot 360 - AI Legal Assistant{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 text-center mb-5">
+        <h1 class="display-4">LawBot 360</h1>
+        <p class="lead">AI-Powered Legal Contract & Compliance Assistant</p>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title">📝 Create Contract</h5>
+                <p class="card-text">Generate legally structured contracts from natural language prompts. Choose from templates for NDAs, Employment agreements, Service contracts, and more.</p>
+                <a href="/create" class="btn btn-primary">Create Now</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title">✓ Verify Document</h5>
+                <p class="card-text">Upload your contract to check for missing clauses, risk factors, and compliance issues. Get actionable suggestions for improvements.</p>
+                <a href="/verify" class="btn btn-primary">Verify Now</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title">📚 Explain Law</h5>
+                <p class="card-text">Understand legal clauses and concepts in plain language. Get explanations with references to relevant sections and acts.</p>
+                <a href="/explain" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <h3>Key Features</h3>
+        <ul class="list-group">
+            <li class="list-group-item">✅ Contract generation from natural language</li>
+            <li class="list-group-item">✅ Document verification with risk scoring</li>
+            <li class="list-group-item">✅ Compliance checking (GST, TDS, Companies Act, MSME)</li>
+            <li class="list-group-item">✅ Multilingual support (English/Hindi)</li>
+            <li class="list-group-item">✅ Clause library and templates</li>
+            <li class="list-group-item">✅ Audit trails and version history</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+

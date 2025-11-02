@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}Verify Document - LawBot 360{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2>Verify Document</h2>
+        <p class="text-muted">Upload a contract to check for missing clauses, risks, and compliance issues</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-lg-8">
+        <div class="card shadow">
+            <div class="card-body">
+                <form id="verifyForm" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label">Upload Document</label>
+                        <input type="file" class="form-control" id="documentFile" accept=".pdf,.docx,.doc" required>
+                        <small class="form-text text-muted">Supported formats: PDF, DOCX (Max 10MB)</small>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Jurisdiction</label>
+                            <select class="form-select" id="jurisdiction">
+                                <option value="IN">India</option>
+                                <option value="US">United States</option>
+                                <option value="UK">United Kingdom</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Language</label>
+                            <select class="form-select" id="language">
+                                <option value="en">English</option>
+                                <option value="hi">हिंदी</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg">Verify Document</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card shadow">
+            <div class="card-body">
+                <h5>Verification Checks</h5>
+                <ul class="list-unstyled">
+                    <li>✓ Mandatory clauses</li>
+                    <li>✓ Risk indicators</li>
+                    <li>✓ Compliance (GST/TDS/MSME)</li>
+                    <li>✓ Payment clarity</li>
+                    <li>✓ Termination clauses</li>
+                    <li>✓ IP & Confidentiality</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="resultSection" class="row mt-4" style="display: none;">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-body">
+                <h4>Verification Report</h4>
+                
+                <div class="mb-4">
+                    <h5>Risk Score</h5>
+                    <div class="progress" style="height: 30px;">
+                        <div id="riskScoreBar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <p id="riskScoreText" class="mt-2"></p>
+                </div>
+
+                <div class="mb-4">
+                    <h5>Findings</h5>
+                    <div id="findingsList"></div>
+                </div>
+
+                <div class="mb-4">
+                    <h5>Suggestions</h5>
+                    <ul id="suggestionsList"></ul>
+                </div>
+
+                <a id="downloadSummary" href="#" class="btn btn-outline-primary">Download Summary PDF</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+document.getElementById('verifyForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData();
+    formData.append('file', document.getElementById('documentFile').files[0]);
+    formData.append('jurisdiction', document.getElementById('jurisdiction').value);
+    formData.append('language', document.getElementById('language').value);
+    
+    try {
+        const response = await fetch('/api/verify/document', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            // Display risk score
+            const riskScore = result.risk_score || 0;
+            const riskColor = riskScore < 30 ? 'bg-success' : riskScore < 70 ? 'bg-warning' : 'bg-danger';
+            document.getElementById('riskScoreBar').style.width = riskScore + '%';
+            document.getElementById('riskScoreBar').className = 'progress-bar ' + riskColor;
+            document.getElementById('riskScoreText').textContent = `Risk Score: ${riskScore.toFixed(1)}/100`;
+            
+            // Display findings
+            const findingsList = document.getElementById('findingsList');
+            findingsList.innerHTML = '';
+            result.findings.forEach(finding => {
+                const severityBadge = finding.severity === 'critical' ? 'danger' : finding.severity === 'high' ? 'warning' : 'info';
+                findingsList.innerHTML += `
+                    <div class="alert alert-${severityBadge}">
+                        <strong>${finding.clause}:</strong> ${finding.issue}<br>
+                        <small>${finding.suggestion}</small>
+                    </div>
+                `;
+            });
+            
+            // Display suggestions
+            const suggestionsList = document.getElementById('suggestionsList');
+            suggestionsList.innerHTML = '';
+            result.suggestions.forEach(suggestion => {
+                suggestionsList.innerHTML += `<li>${suggestion}</li>`;
+            });
+            
+            if (result.summary_pdf_url) {
+                document.getElementById('downloadSummary').href = result.summary_pdf_url;
+            }
+            
+            document.getElementById('resultSection').style.display = 'block';
+        } else {
+            alert('Error: ' + result.error);
+        }
+    } catch (error) {
+        alert('Error: ' + error.message);
+    }
+});
+</script>
+{% endblock %}
+
+

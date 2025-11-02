@@ -1,0 +1,76 @@
+/* LawBot 360 Custom Styles */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.card {
+    border: none;
+    border-radius: 8px;
+}
+
+.card-shadow {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+    background-color: #0066cc;
+    border-color: #0066cc;
+}
+
+.btn-primary:hover {
+    background-color: #0052a3;
+    border-color: #0052a3;
+}
+
+.alert {
+    border-radius: 6px;
+}
+
+.progress {
+    border-radius: 6px;
+}
+
+footer {
+    margin-top: auto;
+}
+
+#languageSelect {
+    max-width: 120px;
+}
+
+/* Contract preview styles */
+#contractResult {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+#contractResult pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Risk score colors */
+.progress-bar.bg-success {
+    background-color: #28a745 !important;
+}
+
+.progress-bar.bg-warning {
+    background-color: #ffc107 !important;
+}
+
+.progress-bar.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+

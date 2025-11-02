@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - LawBot 360{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2>Dashboard</h2>
+        <p class="text-muted">Analytics and metrics for your contracts</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <h5>Statistics</h5>
+                <div id="statistics">
+                    <p class="text-muted">Loading...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <h5>Risk Distribution</h5>
+                <div id="riskHistogram">
+                    <p class="text-muted">Loading...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <h5>Top Missing Clauses</h5>
+                <div id="missingClauses">
+                    <p class="text-muted">Loading...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <h5>Compliance Trends</h5>
+                <div id="complianceScores">
+                    <p class="text-muted">Loading...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+async function loadDashboard() {
+    try {
+        const response = await fetch('/api/dashboard/metrics');
+        const data = await response.json();
+        
+        if (response.ok) {
+            // Statistics
+            document.getElementById('statistics').innerHTML = `
+                <p><strong>Total Contracts:</strong> ${data.counts.contracts || 0}</p>
+                <p><strong>Total Verifications:</strong> ${data.counts.verifications || 0}</p>
+            `;
+            
+            // Risk Histogram
+            let histogramHtml = '<ul class="list-unstyled">';
+            data.risk_histogram.forEach(item => {
+                histogramHtml += `<li>${item.range}: ${item.count}</li>`;
+            });
+            histogramHtml += '</ul>';
+            document.getElementById('riskHistogram').innerHTML = histogramHtml;
+            
+            // Missing Clauses
+            let clausesHtml = '<ul>';
+            data.top_missing_clauses.forEach(clause => {
+                clausesHtml += `<li>${clause}</li>`;
+            });
+            clausesHtml += '</ul>';
+            document.getElementById('missingClauses').innerHTML = clausesHtml;
+            
+            // Compliance Scores
+            let complianceHtml = '<ul class="list-unstyled">';
+            data.compliance_scores.forEach(score => {
+                complianceHtml += `<li>${score.month}: ${score.avg_risk_score}%</li>`;
+            });
+            complianceHtml += '</ul>';
+            document.getElementById('complianceScores').innerHTML = complianceHtml;
+        }
+    } catch (error) {
+        console.error('Error loading dashboard:', error);
+    }
+}
+
+loadDashboard();
+</script>
+{% endblock %}
+
+

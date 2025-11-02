@@ -1,0 +1,37 @@
+{
+  "sources": [
+    {
+      "id": "contract_act_1872",
+      "act_name": "Indian Contract Act, 1872",
+      "jurisdiction": "IN",
+      "endpoint": "https://api.example-legal.gov/acts/contract-act-1872/sections",
+      "method": "GET",
+      "params": {
+        "language": "en"
+      }
+    },
+    {
+      "id": "companies_act_2013",
+      "act_name": "Companies Act, 2013",
+      "jurisdiction": "IN",
+      "endpoint": "https://api.example-legal.gov/acts/companies-act-2013/sections",
+      "method": "GET",
+      "params": {
+        "language": "en"
+      }
+    },
+    {
+      "id": "it_act_2000",
+      "act_name": "Information Technology Act, 2000",
+      "jurisdiction": "IN",
+      "endpoint": "https://api.example-legal.gov/acts/information-technology-act-2000/sections",
+      "method": "GET",
+      "params": {
+        "language": "en"
+      }
+    }
+  ],
+  "default_headers": {
+    "Accept": "application/json"
+  }
+}
